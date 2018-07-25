@@ -1,0 +1,29 @@
+---
+driver:
+  name: ec2
+  shared_credentials_profile: 
+  aws_ssh_key_id: 
+  region: 
+  subnet_id: 
+  associate_public_ip: true
+  iam_profile_name: 
+  security_group_ids: 
+  require_chef_omnibus: true
+
+transport:
+  ssh_key:
+  username: ec2-user
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: AmazonLinux-201703
+    driver: 
+      image_id: ami-4af5022c
+
+suites:
+  - name: default
+    run_list:
+      - recipe[amazonlinux-init::default]
+    attributes:

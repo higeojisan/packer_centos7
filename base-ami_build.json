@@ -1,0 +1,34 @@
+{
+  "variables": {
+    "region":     "{{env `AWS_REGION`}}",
+    "source_ami": "ami-3185744e",
+    "ami_name_prefix": "base-ami"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "{{user `aws_region`}}",
+      "source_ami":    "{{user `source_ami`}}",
+      "instance_type": "t2.micro",
+      "ssh_username": "centos",
+      "ami_name": "{{user `ami_name_prefix`}}_{{timestamp}}",
+      "tags": {
+          "Name": "centos7-base-ami",
+          "version": "{{timestamp}}"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum update -y"
+      ]
+    },
+   {
+      "type": "chef-solo",
+      "cookbook_paths": ["cookbooks"],
+      "run_list": "recipe[centos7]"
+    }
+  ]
+}
