@@ -1,6 +1,6 @@
 {
   "variables": {
-    "region":     "ap-northeast-1",
+    "region":     "{{env `AWS_REGION`}}",
     "source_ami": "ami-3185744e",
     "ami_name_prefix": "base-ami"
   },
