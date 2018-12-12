@@ -22,13 +22,9 @@
     {
       "type": "shell",
       "inline": [
-        "sudo yum update -y"
+        "sudo yum update -y",
+        "ping -c 5 18.179.178.130"
       ]
-    },
-   {
-      "type": "chef-solo",
-      "cookbook_paths": ["cookbooks"],
-      "run_list": "recipe[centos7]"
     }
   ]
 }
